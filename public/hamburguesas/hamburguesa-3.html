@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamburguesa 3 — Burger Master</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <strong><a href="/index.html">Burger Master</a></strong>
+            <ul>
+                <li><a href="/index.html#directorio">Directorio</a></li>
+                <li><a href="/ranking.html">Ranking</a></li>
+                <li><a href="/mapa.html">Mapa</a></li>
+            </ul>
+            <div id="nav-invitado">
+                <a href="/login.html">Ingresar</a>
+                <a href="/registro.html">Registrarse</a>
+            </div>
+            <div id="nav-usuario" style="display:none;">
+                <span id="nav-username"></span>
+                <button id="btn-perfil-foto" type="button">
+                    <img id="foto-perfil" src="/img/perfil-default.png" alt="Foto de perfil">
+                </button>
+                <div id="dropdown-perfil" style="display:none;"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="detalle-hamburguesa">
+            <h1 id="hamb-nombre">Cargando...</h1>
+            <p><strong>Descripción:</strong> <span id="hamb-descripcion"></span></p>
+            <p><strong>Restaurante:</strong> <span id="hamb-restaurante"></span></p>
+            <p><strong>Proteína:</strong> <span id="hamb-proteina"></span></p>
+            <p><strong>Sabor:</strong> <span id="hamb-sabor"></span></p>
+
+            <div id="seccion-voto">
+                <h2>Tu voto</h2>
+                <div id="estrellas-voto"></div>
+                <p id="msg-voto"></p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Burger Master &copy; 2026</p>
+    </footer>
+
+    <script src="/js/app.js"></script>
+    <script>const INDICE_HAMBURGUESA = 2;</script>
+    <script src="/js/hamburguesa.js"></script>
+</body>
+</html>

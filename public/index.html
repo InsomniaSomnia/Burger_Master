@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger Master</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <strong><a href="/index.html">Burger Master</a></strong>
+            <ul>
+                <li><a href="/index.html#directorio">Directorio</a></li>
+                <li><a href="/ranking.html">Ranking</a></li>
+                <li><a href="/mapa.html">Mapa</a></li>
+            </ul>
+            <div id="nav-invitado">
+                <a href="/login.html">Ingresar</a>
+                <a href="/registro.html">Registrarse</a>
+            </div>
+            <div id="nav-usuario" style="display:none;">
+                <span id="nav-username"></span>
+                <button id="btn-perfil-foto" type="button">
+                    <img id="foto-perfil" src="/img/perfil-default.png" alt="Foto de perfil">
+                </button>
+                <div id="dropdown-perfil" style="display:none;"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="hero">
+            <h1>Elige tu hamburguesa ganadora</h1>
+            <p>Vota por tu favorita, sigue el ranking en tiempo real y encuentra los restaurantes cerca de ti.</p>
+            <nav aria-label="Acciones principales">
+                <a href="#" id="btn-votar-ahora">Votar ahora</a>
+                <a href="/ranking.html">Ver ranking</a>
+                <a href="/mapa.html">Ver mapa</a>
+            </nav>
+        </section>
+
+        <section id="competidores">
+            <h2>Las 4 competidoras</h2>
+            <ul>
+                <li><a href="/hamburguesas/hamburguesa-1.html">Hamburguesa 1</a></li>
+                <li><a href="/hamburguesas/hamburguesa-2.html">Hamburguesa 2</a></li>
+                <li><a href="/hamburguesas/hamburguesa-3.html">Hamburguesa 3</a></li>
+                <li><a href="/hamburguesas/hamburguesa-4.html">Hamburguesa 4</a></li>
+            </ul>
+        </section>
+
+        <section id="directorio">
+            <h2>Directorio de restaurantes</h2>
+            <p>Encuentra todos los restaurantes participantes.</p>
+            <a href="/mapa.html">Ver mapa interactivo</a>
+        </section>
+
+        <section id="acceso-rol">
+            <h2>Acceso por rol</h2>
+            <ul>
+                <li><a href="/dashboard-empleado.html">Panel Empleado</a></li>
+                <li><a href="/dashboard-admin.html">Panel Admin</a></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Burger Master &copy; 2026</p>
+    </footer>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

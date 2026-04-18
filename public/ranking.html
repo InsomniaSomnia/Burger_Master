@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ranking — Burger Master</title>
+</head>
+<body>
+    <script src="/js/auth-guard.js"></script>
+    <script>soloAutenticado();</script>
+
+    <header>
+        <nav>
+            <strong><a href="/index.html">Burger Master</a></strong>
+            <ul>
+                <li><a href="/index.html#directorio">Directorio</a></li>
+                <li><a href="/ranking.html">Ranking</a></li>
+                <li><a href="/mapa.html">Mapa</a></li>
+            </ul>
+            <div id="nav-invitado">
+                <a href="/login.html">Ingresar</a>
+                <a href="/registro.html">Registrarse</a>
+            </div>
+            <div id="nav-usuario" style="display:none;">
+                <span id="nav-username"></span>
+                <button id="btn-perfil-foto" type="button">
+                    <img id="foto-perfil" src="/img/perfil-default.png" alt="Foto de perfil">
+                </button>
+                <div id="dropdown-perfil" style="display:none;"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="seccion-ranking">
+            <h1>Ranking en tiempo real</h1>
+
+            <table id="tabla-ranking">
+                <thead>
+                    <tr>
+                        <th>Posición</th>
+                        <th>Imagen</th>
+                        <th>Hamburguesa</th>
+                        <th>Restaurante</th>
+                        <th>Promedio estrellas</th>
+                        <th>Total votos</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-ranking">
+                    <tr><td colspan="6">Cargando...</td></tr>
+                </tbody>
+            </table>
+
+            <p id="total-participantes"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Burger Master &copy; 2026</p>
+    </footer>
+
+    <script src="/js/app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/js/ranking.js"></script>
+</body>
+</html>

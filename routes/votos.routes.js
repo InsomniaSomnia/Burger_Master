@@ -38,7 +38,7 @@ router.post('/', verificarToken, verificarRol('cliente'), async (req, res) => {
 router.get('/ranking', async (req, res) => {
   const { data, error } = await supabase
     .from('hamburguesas')
-    .select('id, nombre, imagen_url, votos(estrellas)');
+    .select('id, nombre, imagen_url, restaurantes(nombre), votos(estrellas)');
 
   if (error) return res.status(500).json({ error: error.message });
 
@@ -49,7 +49,14 @@ router.get('/ranking', async (req, res) => {
         total > 0
           ? Math.round((h.votos.reduce((acc, v) => acc + v.estrellas, 0) / total) * 10) / 10
           : 0;
-      return { id: h.id, nombre: h.nombre, imagen_url: h.imagen_url, promedio_estrellas: promedio, total_votos: total };
+      return {
+        id: h.id,
+        nombre: h.nombre,
+        imagen_url: h.imagen_url,
+        restaurante: h.restaurantes?.nombre || '—',
+        promedio_estrellas: promedio,
+        total_votos: total,
+      };
     })
     .sort((a, b) => b.promedio_estrellas - a.promedio_estrellas || b.total_votos - a.total_votos);
 

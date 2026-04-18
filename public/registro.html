@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrarse — Burger Master</title>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <strong><a href="/index.html">Burger Master</a></strong>
+            <ul>
+                <li><a href="/index.html#directorio">Directorio</a></li>
+                <li><a href="/ranking.html">Ranking</a></li>
+                <li><a href="/mapa.html">Mapa</a></li>
+            </ul>
+            <div id="nav-invitado">
+                <a href="/login.html">Ingresar</a>
+                <a href="/registro.html">Registrarse</a>
+            </div>
+            <div id="nav-usuario" style="display:none;">
+                <span id="nav-username"></span>
+                <button id="btn-perfil-foto" type="button">
+                    <img id="foto-perfil" src="/img/perfil-default.png" alt="Foto de perfil">
+                </button>
+                <div id="dropdown-perfil" style="display:none;"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <form id="formulario-registro" novalidate>
+                <h2>Crear tu cuenta</h2>
+
+                <div class="datos-entrada">
+                    <label for="username">Nombre de Usuario</label>
+                    <input type="text" id="username" placeholder="Ej: Pedrito alimaña" required minlength="4">
+                    <span class="mensaje-error">El usuario debe tener al menos 4 caracteres</span>
+                </div>
+
+                <div class="datos-entrada">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" required>
+                    <span class="mensaje-error">Ingresa una contraseña</span>
+                    <div class="barra-seguridad-wrap">
+                        <div class="nivel-seguridad" id="nivelseguridad"></div>
+                    </div>
+                    <div class="mostrar-contrasena">
+                        <input type="checkbox" id="ver-contrasena">
+                        <label for="ver-contrasena">Mostrar contraseña</label>
+                    </div>
+                </div>
+
+                <div class="datos-entrada">
+                    <label for="confirmar-password">Confirmar Contraseña</label>
+                    <input type="password" id="confirmar-password" required>
+                    <span class="mensaje-error" id="error-confirmacion">Las contraseñas no coinciden</span>
+                    <div class="mostrar-contrasena">
+                        <input type="checkbox" id="mostrar-confirmacion">
+                        <label for="mostrar-confirmacion">Mostrar contraseña</label>
+                    </div>
+                </div>
+
+                <div class="datos-entrada">
+                    <label for="rol">Rol</label>
+                    <select id="rol" required>
+                        <option value="cliente">Cliente</option>
+                        <option value="empleado">Empleado</option>
+                    </select>
+                </div>
+
+                <div class="datos-entrada" id="campo-restaurante" style="display:none;">
+                    <label for="restaurante_id">Código de restaurante</label>
+                    <input type="number" id="restaurante_id" placeholder="0000" min="1000" max="9999" maxlength="4">
+                    <span class="mensaje-error" id="error-restaurante">El código de restaurante es requerido</span>
+                </div>
+
+                <p id="mensaje-registro" class="mensaje-feedback"></p>
+
+                <button type="submit">Registrarme</button>
+
+                <p class="link-cambio">¿Ya tienes cuenta? <a href="/login.html">Inicia sesión</a></p>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>Burger Master &copy; 2026</p>
+    </footer>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

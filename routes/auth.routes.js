@@ -21,7 +21,23 @@ router.post('/registrar', async (req, res) => {
   }
 
   if (rol === 'empleado' && !restaurante_id) {
-    return res.status(400).json({ error: 'Los empleados deben indicar un restaurante_id' });
+    return res.status(400).json({ error: 'Los empleados deben indicar un código de restaurante' });
+  }
+
+  let restauranteUUID = null;
+
+  if (rol === 'empleado') {
+    const { data: restaurante } = await supabase
+      .from('restaurantes')
+      .select('id')
+      .eq('codigo', restaurante_id)
+      .single();
+
+    if (!restaurante) {
+      return res.status(404).json({ error: 'Código de restaurante inválido' });
+    }
+
+    restauranteUUID = restaurante.id;
   }
 
   const { data: existente } = await supabase
@@ -39,7 +55,7 @@ router.post('/registrar', async (req, res) => {
 
   const { data, error } = await supabase
     .from('usuarios')
-    .insert({ username, password: hash, rol, restaurante_id: restaurante_id || null, estado })
+    .insert({ username, password: hash, rol, restaurante_id: restauranteUUID, estado })
     .select('id, username, rol, restaurante_id, estado, created_at')
     .single();
 
