@@ -78,7 +78,7 @@ hamburguesas pero no puede votar la misma dos veces.
   - Siempre se encadena después de autenticacion_middleware
 
 ## Estructura de carpetas
-burger-master/
+Burger_Master/
 ├── middleware/
 │   ├── autenticacion_middleware.js
 │   └── roles_middleware.js
@@ -89,12 +89,36 @@ burger-master/
 │   ├── votos.routes.js
 │   ├── visitas.routes.js
 │   └── admin.routes.js
+├── public/
+│   ├── hamburguesas/
+│   │   ├── hamburguesa-1.html
+│   │   ├── hamburguesa-2.html
+│   │   ├── hamburguesa-3.html
+│   │   └── hamburguesa-4.html
+│   ├── css/
+│   │   ├── style.css
+│   │   └── styles.css
+│   ├── js/
+│   │   ├── app.js
+│   │   ├── auth.js
+│   │   ├── ranking.js
+│   │   ├── mapa.js
+│   │   ├── visitas.js
+│   │   └── modelo3d.js
+│   ├── index.html
+│   ├── login.html
+│   ├── registro.html
+│   ├── ranking.html
+│   ├── mapa.html
+│   ├── dashboard-empleado.html
+│   └── dashboard-admin.html
 ├── node_modules/
+├── supabase.js
+├── servidor.js          ← pendiente
 ├── .env
 ├── .gitignore
 ├── package.json
-├── PROYECTO.md
-└── servidor.js
+└── PROYECTO.md
 ## Variables de entorno (.env)
 SUPABASE_URL=
 SUPABASE_ANON_KEY=
@@ -137,11 +161,11 @@ Logo | Directorio  Ranking  Mapa | Ingresar  Registrarse
 ## Notas para Claude Code
 > Esta sección se actualiza en cada cambio relevante para mantener contexto entre chats.
 
-### Estado actual del proyecto (2026-04-17)
-- servidor.js → pendiente de crear (último paso backend)
-- Frontend en curso: public/index.html + css/style.css creados
+### Estado actual del proyecto (2026-04-18)
+- Backend completo excepto servidor.js (pendiente, último paso)
+- Frontend: estructura de archivos creada, todos vacíos listos para desarrollar
 
-### Archivos creados
+### Archivos creados — Backend
 - middleware/autenticacion_middleware.js ✓
 - middleware/roles_middleware.js ✓
 - routes/auth.routes.js ✓
@@ -152,11 +176,27 @@ Logo | Directorio  Ranking  Mapa | Ingresar  Registrarse
 - routes/admin.routes.js ✓
 - supabase.js ✓
 - servidor.js ✗ pendiente
-- public/index.html ✓
-- public/css/style.css ✓
-- public/js/main.js ✗ pendiente
-- public/login.html ✗ pendiente
-- public/registro.html ✗ pendiente
+
+### Archivos creados — Frontend (public/)
+- public/index.html ✓ vacío
+- public/login.html ✓ vacío
+- public/registro.html ✓ vacío
+- public/ranking.html ✓ vacío
+- public/mapa.html ✓ vacío
+- public/dashboard-empleado.html ✓ vacío
+- public/dashboard-admin.html ✓ vacío
+- public/hamburguesas/hamburguesa-1.html ✓ vacío
+- public/hamburguesas/hamburguesa-2.html ✓ vacío
+- public/hamburguesas/hamburguesa-3.html ✓ vacío
+- public/hamburguesas/hamburguesa-4.html ✓ vacío
+- public/css/style.css ✓ vacío
+- public/css/styles.css ✓ vacío
+- public/js/app.js ✓ vacío
+- public/js/auth.js ✓ vacío
+- public/js/ranking.js ✓ vacío
+- public/js/mapa.js ✓ vacío
+- public/js/visitas.js ✓ vacío
+- public/js/modelo3d.js ✓ vacío
 
 ### Decisiones de implementación
 - `req.usuario` (no `req.user`) → nombre usado en todo el proyecto para el payload JWT
