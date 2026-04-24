@@ -1,0 +1,327 @@
+/* 1. Contenedor Maestro */
+header nav {
+    display: flex;
+    justify-content: space-between; /* Distribución extrema */
+    align-items: center;        /* Centrado vertical perfecto */
+    padding: 20px 40px;
+}
+
+/* 2. Lista de Navegación */
+header nav ul {
+    display: flex;
+    list-style: none;           /* Elimina los puntos de la lista */
+    gap: 30px;                  /* Espacio uniforme entre enlaces */
+    margin: 0 40px 0 auto;      /* auto a la izquierda lo empuja a la derecha; 40px lo separa de los botones */
+    padding: 0;
+}
+
+/* 3. Bloque de Invitado/Botones */
+#nav-invitado {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* --- Contenedor Maestro --- */
+.hero-bento {
+    display: flex;
+    background-color: var(--surface-dark, #2a1209); /* Ajusta al café de tu diseño */
+    border-radius: 32px; /* Curvas amplias de la referencia */
+    overflow: hidden; /* CRÍTICO: Corta las esquinas de la imagen para que respete el borde curvo */
+    max-width: 1200px;
+    margin: 40px auto;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Caja 1: Imagen --- */
+.hero-visual {
+    flex: 1; /* Ocupa el 50% del espacio */
+    min-height: 500px; /* Garantiza altura incluso si el texto es corto */
+}
+
+.hero-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Llena la caja sin deformar la imagen */
+}
+
+/* --- Caja 2: Contenido --- */
+.hero-copy {
+    flex: 1; /* Ocupa el otro 50% del espacio */
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centrado vertical del texto */
+    gap: 24px; /* Espaciado uniforme Lean */
+}
+
+.hero-copy h1 {
+    font-size: 3.5rem;
+    font-family: 'Serif', Georgia, serif;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.hero-copy p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+/* --- Alineación de Botones --- */
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap; /* Evita que los botones colapsen si la pantalla se reduce */
+}
+
+/* Estilos base de botones (Ajusta los colores a tus variables) */
+.btn-primary {
+    background-color: #d95d14;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-secondary, .btn-outline {
+    background-color: transparent;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* --- Estructura Física del Botón --- */
+.btn-nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 28px;
+    border-radius: 50px; /* Crea el efecto de píldora redondeada */
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none; /* Elimina el subrayado de enlace */
+    transition: all 0.2s ease-in-out; /* Animación fluida de estado */
+}
+
+/* --- Variante: Contorno / Ghost (Ingresar) --- */
+.btn-ghost {
+    background-color: transparent;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-ghost:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: #ffffff;
+}
+
+/* --- Variante: Sólido (Registrarse) --- */
+.btn-solid {
+    background-color: #d95d14; /* Naranja corporativo */
+    color: #ffffff;
+    border: 1px solid #d95d14; /* Mantiene la misma caja física que el ghost */
+}
+
+.btn-solid:hover {
+    background-color: #f06e20; /* Naranja más brillante al pasar el ratón */
+    transform: translateY(-2px); /* Micro-interacción: se eleva ligeramente */
+    box-shadow: 0 4px 12px rgba(217, 93, 20, 0.3); /* Brillo naranja exterior */
+}
+
+/* --- Contenedor Principal --- */
+.competidores-module {
+    padding: 60px 5%;
+    max-width: 100%;
+    margin: 0 -20px auto;
+    background-color: #060208;
+}
+
+
+.section-title {
+    font-family: 'Serif', Georgia, serif;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+/* --- Motor de Grilla --- */
+.bento-grid-4 {
+    display: grid;
+    /* Forzamos exactamente 4 fracciones iguales, ignorando el ancho mínimo */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 30px;
+}
+
+/* --- Tarjeta Individual --- */
+.competidor-card {
+    background-color: #060208; /* Tono café de tu paleta */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.competidor-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Multimedia --- */
+.card-img-wrapper {
+    width: 100%;
+    height: 220px; /* Fija la altura para que todas las imágenes sean iguales */
+    background-color: #1a0b05;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Llena el espacio sin deformar la imagen */
+}
+
+/* --- Contenido de la Tarjeta --- */
+.card-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que el contenedor crezca para empujar el botón */
+    gap: 12px;
+}
+
+.card-content h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+.card-content p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px; /* Espacio extra antes del botón */
+}
+
+/* --- Botón Contorno Naranja --- */
+.btn-outline-orange {
+    margin-top: auto; /* Empuja el botón al fondo del contenedor */
+    align-self: flex-start; /* Evita que el botón ocupe todo el ancho */
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 24px;
+    border: 1px solid #d95d14; /* Naranja corporativo */
+    color: #d95d14;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-orange:hover {
+    background-color: #d95d14;
+    color: #ffffff;
+}
+
+/* --- Contenedor Maestro del Directorio --- */
+.directorio-bento {
+    display: flex;
+    background-color: #2a1209; /* Café institucional */
+    border-radius: 32px;
+    overflow: hidden; /* CRÍTICO: Evita que el mapa o la imagen se salgan de las curvas */
+    max-width: 1200px;
+    margin: 60px auto;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Caja Izquierda: Texto --- */
+.directorio-copy {
+    flex: 1;
+    padding: 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
+    gap: 20px;
+}
+
+.directorio-copy h2 {
+    font-family: 'Serif', Georgia, serif;
+    font-size: 3rem;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.1;
+}
+
+.directorio-copy p {
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin: 0 0 16px 0; /* Espacio extra antes del botón */
+}
+
+/* Nota: Estamos reusando la clase .btn-solid que creamos antes para el menú */
+
+/* --- Caja Derecha: Multimedia / Mapa --- */
+.directorio-visual {
+    flex: 1;
+    background-color: #1a0b05;
+    position: relative;
+    min-height: 400px;
+}
+
+.mapa-placeholder {
+    width: 100%;
+    height: 100%;
+}
+
+.mapa-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen llene la caja perfectamente */
+    opacity: 0.8; /* Oscurece un poco la imagen para mantener la estética Dark */
+    transition: transform 0.5s ease;
+}
+
+.directorio-bento:hover .mapa-placeholder img {
+    transform: scale(1.05); /* Micro-interacción: Zoom lento al pasar el ratón por la tarjeta */
+}
+
+/* --- Responsividad Obligatoria (Mobile First inverso) --- */
+@media (max-width: 900px) {
+    .directorio-bento {
+        flex-direction: column; /* Apila el texto arriba y el mapa abajo */
+    }
+    
+    .directorio-copy {
+        padding: 40px 24px;
+    }
+    
+    .directorio-copy h2 {
+        font-size: 2.2rem;
+    }
+    
+    .directorio-visual {
+        min-height: 300px;
+    }
+}
+
+/*-------------------------------footer-------------------------------*/
+footer {
+    background-color: #060208;
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 0;
+    margin: 0 -20px auto;
+
+
+}

@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/variables.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
     <title>Burger Master</title>
 </head>
 <body>
@@ -16,8 +19,8 @@
                 <li><a href="/mapa.html">Mapa</a></li>
             </ul>
             <div id="nav-invitado">
-                <a href="/login.html">Ingresar</a>
-                <a href="/registro.html">Registrarse</a>
+                <a href="/login.html" class="btn-nav btn-ghost">Ingresar</a>
+                <a href="/registro.html" class="btn-nav btn-solid">Registrarse</a>
             </div>
             <div id="nav-usuario" style="display:none;">
                 <span id="nav-username"></span>
@@ -31,33 +34,88 @@
 
     <main>
 
-        <section id="hero">
-            <h1>Elige tu hamburguesa ganadora</h1>
-            <p>Vota por tu favorita, sigue el ranking en tiempo real y encuentra los restaurantes cerca de ti.</p>
-            <nav aria-label="Acciones principales">
-                <a href="#" id="btn-votar-ahora">Votar ahora</a>
-                <a href="/ranking.html">Ver ranking</a>
-                <a href="/mapa.html">Ver mapa</a>
-            </nav>
-        </section>
+<article id="hero" class="hero-bento">
+    <div class="hero-visual">
+        <img src="assets/placeholder.webp" alt="Personas disfrutando en la hamburguesería" loading="eager">
+    </div>
 
-        <section id="competidores">
-            <h2>Las 4 competidoras</h2>
-            <ul>
-                <li><a href="/hamburguesas/hamburguesa-1.html">Hamburguesa 1</a></li>
-                <li><a href="/hamburguesas/hamburguesa-2.html">Hamburguesa 2</a></li>
-                <li><a href="/hamburguesas/hamburguesa-3.html">Hamburguesa 3</a></li>
-                <li><a href="/hamburguesas/hamburguesa-4.html">Hamburguesa 4</a></li>
-            </ul>
-        </section>
+    <div class="hero-copy">
+        <h1>Elige tu hamburguesa ganadora</h1>
+        <p>Vota por tu favorita, sigue el ranking en tiempo real y encuentra los restaurantes cerca de ti.</p>
+        
+        <nav aria-label="Acciones principales" class="hero-actions">
+            <a href="#" id="btn-votar-ahora" class="btn-primary">Votar ahora</a>
+            <a href="/ranking.html" class="btn-secondary">Ver ranking</a>
+            <a href="/mapa.html" class="btn-outline">Ver mapa</a>
+        </nav>
+    </div>
+</article>
 
-        <section id="directorio">
-            <h2>Directorio de restaurantes</h2>
-            <p>Encuentra todos los restaurantes participantes.</p>
-            <a href="/mapa.html">Ver mapa interactivo</a>
-        </section>
+ <section id="competidores" class="competidores-module">
+    <h2 class="section-title">Hamburguesas Competidoras</h2>
+    
+    <div class="bento-grid-4">
+        <article class="competidor-card">
+            <div class="card-img-wrapper">
+                <img src="assets/placeholder.webp" alt="Hamburguesa 1" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h3>Hamburguesa #1</h3>
+                <p>Una mezcla magistral de cortes angus, queso fundido y tocino crujiente, bañada en nuestra salsa secreta.</p>
+                <a href="/hamburguesas/hamburguesa-1.html" class="btn-outline-orange">Ver detalle &rarr;</a>
+            </div>
+        </article>
 
-        <section id="acceso-rol">
+        <article class="competidor-card">
+            <div class="card-img-wrapper">
+                <img src="assets/placeholder.webp" alt="Hamburguesa 2" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h3>Hamburguesa #2</h3>
+                <p>El balance perfecto entre dulce y salado. Pan brioche artesanal con mermelada de cebolla y doble carne.</p>
+                <a href="/hamburguesas/hamburguesa-2.html" class="btn-outline-orange">Ver detalle &rarr;</a>
+            </div>
+        </article>
+
+        <article class="competidor-card">
+            <div class="card-img-wrapper">
+                <img src="assets/placeholder.webp" alt="Hamburguesa 3" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h3>Hamburguesa #3</h3>
+                <p>Una explosión de sabor ahumado. Queso pepper jack, aros de cebolla y pulled pork cocinado a fuego lento.</p>
+                <a href="/hamburguesas/hamburguesa-3.html" class="btn-outline-orange">Ver detalle &rarr;</a>
+            </div>
+        </article>
+
+        <article class="competidor-card">
+            <div class="card-img-wrapper">
+                <img src="assets/placeholder.webp" alt="Hamburguesa 4" loading="lazy">
+            </div>
+            <div class="card-content">
+                <h3>Hamburguesa #4</h3>
+                <p>La clásica llevada a otro nivel. Vegetales frescos de granja, carne jugosa y pan rústico tostado con mantequilla.</p>
+                <a href="/hamburguesas/hamburguesa-4.html" class="btn-outline-orange">Ver detalle &rarr;</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section id="directorio" class="directorio-bento">
+    <div class="directorio-copy">
+        <h2>Directorio de restaurantes</h2>
+        <p>Encuentra todos los restaurantes participantes, traza tu ruta y planifica tu próxima degustación en tiempo real.</p>
+        <a href="/mapa.html" id="btn-votar-ahora" class="btn-primary">Ver mapa interactivo</a>
+    </div>
+
+    <div class="directorio-visual">
+        <div id="mapa-interactivo" class="mapa-placeholder">
+            <img src="assets/placeholder.webp" alt="Vista previa del directorio geolocalizado" loading="lazy">
+        </div>
+    </div>
+</section>
+
+        <section id="acceso-rol" style="display: none;">
             <h2>Acceso por rol</h2>
             <ul>
                 <li><a href="/dashboard-empleado.html">Panel Empleado</a></li>

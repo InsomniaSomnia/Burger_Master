@@ -1,0 +1,242 @@
+/* 1. Reset Global (Silencia todos los enlaces por defecto) */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* 2. Excepción (Para enlaces dentro de párrafos que deben ser obvios) */
+.enlace-texto {
+    color: var(--accent); /* Tu color naranja/corporativo */
+    text-decoration: underline;
+    text-decoration-color: transparent; /* Subrayado invisible en reposo */
+    text-underline-offset: 4px; /* Separa el subrayado del texto */
+    font-weight: 500;
+}
+
+.enlace-texto:hover {
+    text-decoration-color: var(--accent); /* El subrayado aparece al pasar el ratón */
+    opacity: 1; /* Sobrescribe la opacidad global */
+}
+
+/* Fondo para toda la página */
+body {
+    margin: 0;
+    font-family: sans-serif;
+    color: #ffffff;
+    background-image: url("/assets/bg_register_burger.jpg"); /* Cambia 'placeholder.webp' por tu imagen real, ej: bg_register_burger.jpg */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Hace que el fondo no se mueva al hacer scroll */
+}
+
+
+/* 1. Contenedor Maestro */
+header nav {
+    display: flex;
+    justify-content: space-between; /* Distribución extrema */
+    align-items: center;        /* Centrado vertical perfecto */
+    padding: 20px 40px;
+    background-color: #060208;
+}
+
+/* 2. Lista de Navegación */
+header nav ul {
+    display: flex;
+    list-style: none;           /* Elimina los puntos de la lista */
+    gap: 30px;                  /* Espacio uniforme entre enlaces */
+    margin: 0 40px 0 auto;      /* auto a la izquierda lo empuja a la derecha; 40px lo separa de los botones */
+    padding: 0;
+}
+
+
+/* 3. Bloque de Invitado/Botones */
+#nav-invitado {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+
+/* Estilos base de botones (Ajusta los colores a tus variables) */
+.btn-primary {
+    background-color: #d95d14;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* --- 1. Contenedor Espacial --- */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 85vh; /* Ocupa el alto de la pantalla menos el header */
+    padding: 40px 20px;
+}
+
+
+/* --- 2. La Tarjeta (Bento Card del Formulario) --- */
+#formulario-registro {
+    background-color: rgba(26, 11, 5, 0.85); /* Fondo translúcido para ver la imagen de la página */
+    backdrop-filter: blur(12px); /* Efecto de cristal esmerilado (Glassmorphism) */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+    display: flex;
+    flex-direction: column;
+}
+
+#formulario-registro h2 {
+    color: #ffffff;
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 32px;
+    text-align: center;
+    font-family: sans-serif; /* Tipografía limpia sin remates como en la referencia */
+}
+
+/* --- 3. Campos de Entrada (Inputs & Selects) --- */
+.datos-entrada {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.datos-entrada label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+/* Diseño de la "caja" de texto basada en tu imagen */
+.datos-entrada input[type="text"],
+.datos-entrada input[type="password"],
+.datos-entrada input[type="number"],
+.datos-entrada select {
+    background-color: rgba(255, 255, 255, 0.04); /* Fondo translúcido */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    padding: 14px 16px;
+    border-radius: 12px; /* Bordes redondeados sutiles */
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Micro-interacción de enfoque */
+.datos-entrada input:focus,
+.datos-entrada select:focus {
+    border-color: #d95d14; /* Tu naranja corporativo */
+    background-color: rgba(206, 19, 19, 0.08);
+    box-shadow: 0 0 0 3px rgba(217, 93, 20, 0.15);
+}
+
+.datos-entrada input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Control del menú desplegable abierto */
+.datos-entrada select option {
+    color: #000000; /* Fuerza el texto a negro */
+    background-color: #ffffff; /* Fuerza el fondo a blanco */
+    font-weight: 500;
+}
+
+/* --- 4. Elementos Secundarios y Seguridad --- */
+.mensaje-error {
+    display: none; /* Se activa con JS agregando una clase */
+    color: #ff4d4d;
+    font-size: 0.8rem;
+    margin-top: 6px;
+}
+
+.mostrar-contrasena {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    cursor: pointer;
+}
+
+.mostrar-contrasena input[type="checkbox"] {
+    accent-color: #d95d14; /* Tinta el checkbox de naranja */
+    cursor: pointer;
+}
+
+/* Barra medidora de fuerza de contraseña */
+.barra-seguridad-wrap {
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin-top: 12px;
+    overflow: hidden;
+}
+
+.nivel-seguridad {
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+/* --- 5. Botón Principal (Pill Design) --- */
+#formulario-registro button[type="submit"] {
+    background-color: #d95d14;
+    color: #ffffff;
+    border: none;
+    padding: 16px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    width: 100%;
+}
+
+#formulario-registro button[type="submit"]:hover {
+    background-color: #f06e20;
+    transform: translateY(-2px);
+}
+
+/* --- 6. Enlace Inferior --- */
+.link-cambio {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 24px;
+    font-size: 0.95rem;
+}
+
+.link-cambio a {
+    color: #d95d14;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.link-cambio a:hover {
+    text-decoration: underline;
+}
+
+/*-------------------------------footer-------------------------------*/
+footer {
+    background-color: #060208;
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 0;
+    margin: 0 -20px auto;
+
+
+}

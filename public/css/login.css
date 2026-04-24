@@ -1,0 +1,59 @@
+/* 1. Reset Global (Silencia todos los enlaces por defecto) */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* 2. Excepción (Para enlaces dentro de párrafos que deben ser obvios) */
+.enlace-texto {
+    color: var(--accent); /* Tu color naranja/corporativo */
+    text-decoration: underline;
+    text-decoration-color: transparent; /* Subrayado invisible en reposo */
+    text-underline-offset: 4px; /* Separa el subrayado del texto */
+    font-weight: 500;
+}
+
+.enlace-texto:hover {
+    text-decoration-color: var(--accent); /* El subrayado aparece al pasar el ratón */
+    opacity: 1; /* Sobrescribe la opacidad global */
+}
+
+/* 1. Contenedor Maestro */
+header nav {
+    display: flex;
+    justify-content: space-between; /* Distribución extrema */
+    align-items: center;        /* Centrado vertical perfecto */
+    padding: 20px 40px;
+    background-color: #2a1209;
+}
+
+/* 2. Lista de Navegación */
+header nav ul {
+    display: flex;
+    list-style: none;           /* Elimina los puntos de la lista */
+    gap: 30px;                  /* Espacio uniforme entre enlaces */
+    margin: 0 40px 0 auto;      /* auto a la izquierda lo empuja a la derecha; 40px lo separa de los botones */
+    padding: 0;
+}
+
+
+/* 3. Bloque de Invitado/Botones */
+#nav-invitado {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/*------Footer-----*/
+footer {
+    background-color: #060208;
+    color: #ffffff;
+    text-align: center;
+    padding: 40px 0;
+    margin: 0 -20px auto;
+}

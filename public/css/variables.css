@@ -1,0 +1,30 @@
+/* 1. Reset Global (Silencia todos los enlaces por defecto) */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+}
+
+a:hover {
+    opacity: 0.8;
+}
+
+/* 2. Excepción (Para enlaces dentro de párrafos que deben ser obvios) */
+.enlace-texto {
+    color: var(--accent); /* Tu color naranja/corporativo */
+    text-decoration: underline;
+    text-decoration-color: transparent; /* Subrayado invisible en reposo */
+    text-underline-offset: 4px; /* Separa el subrayado del texto */
+    font-weight: 500;
+}
+
+.enlace-texto:hover {
+    text-decoration-color: var(--accent); /* El subrayado aparece al pasar el ratón */
+    opacity: 1; /* Sobrescribe la opacidad global */
+}
+
+body {
+    background-color: #2a1209;
+    color: white;
+
+}
