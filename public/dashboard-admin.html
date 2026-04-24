@@ -50,12 +50,10 @@
 
     <script src="/js/app.js"></script>
     <script>
-        const API_URL_ADMIN = 'http://localhost:3000';
-
         async function cargarRanking() {
             const contenedor = document.getElementById('lista-ranking');
             try {
-                const res  = await fetch(`${API_URL_ADMIN}/votos/ranking`);
+                const res  = await fetch(`${API_URL}/votos/ranking`);
                 const data = await res.json();
 
                 if (!res.ok) { contenedor.textContent = 'Error al cargar el ranking.'; return; }
@@ -76,7 +74,7 @@
             const contenedor = document.getElementById('lista-pendientes');
             const token = localStorage.getItem('token');
             try {
-                const res  = await fetch(`${API_URL_ADMIN}/admin/usuarios/pendientes`, {
+                const res  = await fetch(`${API_URL}/admin/usuarios/pendientes`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 const data = await res.json();
@@ -101,19 +99,29 @@
 
         async function aprobar(id) {
             const token = localStorage.getItem('token');
-            await fetch(`${API_URL_ADMIN}/admin/usuarios/${id}/aprobar`, {
+            const res = await fetch(`${API_URL}/admin/usuarios/${id}/aprobar`, {
                 method: 'PATCH',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
+            if (!res.ok) {
+                const data = await res.json();
+                alert(data.error || 'Error al aprobar el empleado.');
+                return;
+            }
             cargarPendientes();
         }
 
         async function rechazar(id) {
             const token = localStorage.getItem('token');
-            await fetch(`${API_URL_ADMIN}/admin/usuarios/${id}/rechazar`, {
+            const res = await fetch(`${API_URL}/admin/usuarios/${id}/rechazar`, {
                 method: 'PATCH',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
+            if (!res.ok) {
+                const data = await res.json();
+                alert(data.error || 'Error al rechazar el empleado.');
+                return;
+            }
             cargarPendientes();
         }
 

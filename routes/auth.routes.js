@@ -30,7 +30,7 @@ router.post('/registrar', async (req, res) => {
     const { data: restaurante } = await supabase
       .from('restaurantes')
       .select('id')
-      .eq('codigo', restaurante_id)
+      .eq('id', restaurante_id)
       .single();
 
     if (!restaurante) {

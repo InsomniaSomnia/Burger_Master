@@ -2,7 +2,12 @@ function obtenerUsuario() {
     try {
         const token = localStorage.getItem('token');
         if (!token) return null;
-        return JSON.parse(atob(token.split('.')[1]));
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        if (payload.exp && Date.now() / 1000 > payload.exp) {
+            localStorage.removeItem('token');
+            return null;
+        }
+        return payload;
     } catch {
         return null;
     }
