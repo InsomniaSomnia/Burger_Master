@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/login.css">
+    <link rel="stylesheet" href="/css/registro.css">
     <title>Iniciar Sesión — Burger Master</title>
 </head>
 <body>
@@ -17,22 +17,15 @@
                 <li><a href="/mapa.html">Mapa</a></li>
             </ul>
             <div id="nav-invitado">
-                <a href="/login.html">Ingresar</a>
-                <a href="/registro.html">Registrarse</a>
-            </div>
-            <div id="nav-usuario" style="display:none;">
-                <span id="nav-username"></span>
-                <button id="btn-perfil-foto" type="button">
-                    <img id="foto-perfil" src="/img/perfil-default.png" alt="Foto de perfil">
-                </button>
-                <div id="dropdown-perfil" style="display:none;"></div>
+                <a href="/login.html" class="btn-primary" style="display: none;">Ingresar</a>
+                <a href="/registro.html" style="display: none;">Registrarse</a>
             </div>
         </nav>
     </header>
 
     <main>
         <section>
-            <form id="formulario-login" novalidate>
+            <form id="formulario-registro" novalidate>
                 <h2>Iniciar Sesión</h2>
 
                 <div class="datos-entrada">
@@ -45,6 +38,7 @@
                     <label for="login-password">Contraseña</label>
                     <input type="password" id="login-password" required>
                     <span class="mensaje-error">Ingresa tu contraseña</span>
+                    
                     <div class="mostrar-contrasena">
                         <input type="checkbox" id="mostrar-login">
                         <label for="mostrar-login">Mostrar contraseña</label>
