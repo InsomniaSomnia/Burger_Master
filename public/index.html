@@ -6,7 +6,49 @@
     <link rel="stylesheet" href="/css/variables.css">
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <title>Burger Master</title>
+    <style>
+        #directorio {
+            background: #0a0a0a;
+            padding: 60px 40px;
+        }
+        #directorio .directorio-copy {
+            margin-bottom: 28px;
+        }
+        #directorio .directorio-copy p {
+            color: rgba(255,255,255,0.6);
+            margin: 8px 0 20px;
+        }
+        #mapa-sedes {
+            width: 100%;
+            height: 450px;
+            border: 1px solid rgba(255, 107, 26, 0.3);
+            border-radius: 6px;
+        }
+        .leaflet-popup-content-wrapper {
+            background: #1a1a1a;
+            color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.6);
+        }
+        .leaflet-popup-tip {
+            background: #1a1a1a;
+        }
+        .popup-nombre {
+            color: #ff6b1a;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .popup-dir {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.7);
+        }
+        @media (max-width: 768px) {
+            #mapa-sedes { height: 300px; }
+            #directorio { padding: 40px 20px; }
+        }
+    </style>
 </head>
 <body>
 
@@ -36,7 +78,7 @@
 
 <article id="hero" class="hero-bento">
     <div class="hero-visual">
-        <img src="assets/placeholder.webp" alt="Personas disfrutando en la hamburguesería" loading="eager">
+        <img src="assets/Peronas_burger.jpg" alt="Personas disfrutando en la hamburguesería" loading="eager">
     </div>
 
     <div class="hero-copy">
@@ -57,7 +99,7 @@
     <div class="bento-grid-4">
         <article class="competidor-card">
             <div class="card-img-wrapper">
-                <img src="assets/placeholder.webp" alt="Hamburguesa 1" loading="lazy">
+                <img src="assets/Burger1.png" alt="Hamburguesa 1" loading="lazy">
             </div>
             <div class="card-content">
                 <h3>Crispy Inferno</h3>
@@ -68,7 +110,7 @@
 
         <article class="competidor-card">
             <div class="card-img-wrapper">
-                <img src="assets/placeholder.webp" alt="Hamburguesa 2" loading="lazy">
+                <img src="assets/Burger2.png" alt="Hamburguesa 2" loading="lazy">
             </div>
             <div class="card-content">
                 <h3>La Suprema</h3>
@@ -79,7 +121,7 @@
 
         <article class="competidor-card">
             <div class="card-img-wrapper">
-                <img src="assets/placeholder.webp" alt="Hamburguesa 3" loading="lazy">
+                <img src="assets/Burger1.png" alt="Hamburguesa 3" loading="lazy">
             </div>
             <div class="card-content">
                 <h3>Smash Explosion</h3>
@@ -90,7 +132,7 @@
 
         <article class="competidor-card">
             <div class="card-img-wrapper">
-                <img src="assets/placeholder.webp" alt="Hamburguesa 4" loading="lazy">
+                <img src="assets/Burger2.png" alt="Hamburguesa 4" loading="lazy">
             </div>
             <div class="card-content">
                 <h3>The Original Bun</h3>
@@ -101,18 +143,13 @@
     </div>
 </section>
 
-<section id="directorio" class="directorio-bento">
+<section id="directorio">
     <div class="directorio-copy">
-        <h2>Directorio de restaurantes</h2>
+        <h2 class="section-title">Nuestras Sedes</h2>
         <p>Encuentra todos los restaurantes participantes, traza tu ruta y planifica tu próxima degustación en tiempo real.</p>
-        <a href="/mapa.html" id="btn-ver-mapa" class="btn-primary">Ver mapa interactivo</a>
+        <a href="/mapa.html" id="btn-ver-mapa" class="btn-primary">Ver mapa completo</a>
     </div>
-
-    <div class="directorio-visual">
-        <div id="mapa-interactivo" class="mapa-placeholder">
-            <img src="assets/placeholder.webp" alt="Vista previa del directorio geolocalizado" loading="lazy">
-        </div>
-    </div>
+    <div id="mapa-sedes"></div>
 </section>
 
         <section id="acceso-rol" style="display: none;">
@@ -129,6 +166,45 @@
         <p>Burger Master &copy; 2026</p>
     </footer>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const map = L.map('mapa-sedes', {
+                center: [10.3897, -75.4830],
+                zoom: 15,
+                zoomControl: false
+            });
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+
+            L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+            const iconoSede = L.divIcon({
+                className: '',
+                html: '<div style="width:16px;height:16px;background:#ff6b1a;border:2px solid white;border-radius:50%;"></div>',
+                iconSize: [16, 16],
+                iconAnchor: [8, 8],
+                popupAnchor: [0, -12]
+            });
+
+            const sedes = [
+                { coords: [10.391265611095676, -75.47330186666943], nombre: 'Burger Master - Sede Norte',     dir: 'Sede Norte, Cartagena' },
+                { coords: [10.388509160178392, -75.47565692870604], nombre: 'Burger Master - Sede Centro',    dir: 'Sede Centro, Cartagena' },
+                { coords: [10.388554267304928, -75.47550311542061], nombre: 'Burger Master - Sede Centro 2',  dir: 'Sede Centro 2, Cartagena' },
+                { coords: [10.389131141197762, -75.50269617116432], nombre: 'Burger Master - Sede Bocagrande',dir: 'Bocagrande, Cartagena' },
+            ];
+
+            sedes.forEach(function (s) {
+                L.marker(s.coords, { icon: iconoSede })
+                    .addTo(map)
+                    .bindPopup('<div class="popup-nombre">' + s.nombre + '</div><div class="popup-dir">' + s.dir + '</div>');
+            });
+        });
+    </script>
     <script src="/js/app.js"></script>
 </body>
 </html>

@@ -75,6 +75,7 @@ if (!usuario) {
 } else if (usuario.rol !== 'cliente') {
     btnVotar.textContent = 'Solo clientes pueden votar';
 } else {
+    const initPromise = init();
     estrellas.forEach(estrella => {
         estrella.addEventListener('mouseover', () => resaltarEstrellas(parseInt(estrella.dataset.valor)));
         estrella.addEventListener('mouseout',  () => resaltarEstrellas(estrellaSeleccionada));
@@ -132,5 +133,3 @@ if (!usuario) {
         }
     });
 }
-
-const initPromise = init();
