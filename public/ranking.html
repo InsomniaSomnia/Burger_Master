@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ranking — Burger Master</title>
+    <link rel="stylesheet" href="/css/ranking.css">
 </head>
 <body>
+
     <script src="/js/auth-guard.js"></script>
+    <script>soloAutenticado();</script>
 
     <header>
         <nav>
@@ -17,13 +20,13 @@
                 <li><a href="/mapa.html">Mapa</a></li>
             </ul>
             <div id="nav-invitado">
-                <a href="/login.html">Ingresar</a>
-                <a href="/registro.html">Registrarse</a>
+                <a href="/login.html" class="btn-nav btn-ghost">Ingresar</a>
+                <a href="/registro.html" class="btn-nav btn-solid">Registrarse</a>
             </div>
             <div id="nav-usuario" style="display:none;">
                 <span id="nav-username"></span>
                 <button id="btn-perfil-foto" type="button">
-                    <img id="foto-perfil" src="/img/perfil-default.png" alt="Foto de perfil">
+                    <img id="foto-perfil" src="/assets/photo_profile.jpg" alt="Foto de perfil">
                 </button>
                 <div id="dropdown-perfil" style="display:none;"></div>
             </div>
@@ -31,27 +34,48 @@
     </header>
 
     <main>
-        <section id="seccion-ranking">
-            <h1>Ranking en tiempo real</h1>
 
-            <table id="tabla-ranking">
-                <thead>
-                    <tr>
-                        <th>Posición</th>
-                        <th>Imagen</th>
-                        <th>Hamburguesa</th>
-                        <th>Restaurante</th>
-                        <th>Promedio estrellas</th>
-                        <th>Total votos</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody-ranking">
-                    <tr><td colspan="6">Cargando...</td></tr>
-                </tbody>
-            </table>
-
-            <p id="total-participantes"></p>
+        <section class="hero">
+            <span class="badge-vivo">
+                <span class="punto-vivo"></span>
+                En vivo
+            </span>
+            <h1>Ranking en Vivo</h1>
+            <div class="hero-sep"></div>
+            <p class="hero-sub">Competencia gastronómica · Temporada 2026</p>
+            <div class="hero-participantes">
+                <span class="num-participantes" id="num-participantes">—</span>
+                <span class="label-participantes">participantes activos en la competencia</span>
+            </div>
         </section>
+
+        <div class="sep-dorado"></div>
+
+        <section class="seccion-lider" id="seccion-lider">
+            <div class="lider-watermark" id="lider-watermark">1</div>
+            <div class="lider-contenido" id="lider-contenido">
+                <span class="estado-carga">Cargando…</span>
+            </div>
+        </section>
+
+        <div class="sep-dorado"></div>
+
+        <section class="seccion-clasificacion">
+            <p class="seccion-titulo">Clasificación</p>
+            <div id="lista-clasificacion">
+                <span class="estado-carga">Cargando…</span>
+            </div>
+        </section>
+
+        <div class="sep-dorado"></div>
+
+        <section class="seccion-cards">
+            <p class="seccion-titulo">Las 4 Competidoras</p>
+            <div class="cards-grid" id="grid-cards">
+                <span class="estado-carga" style="grid-column:span 4;">Cargando…</span>
+            </div>
+        </section>
+
     </main>
 
     <footer>
@@ -59,7 +83,7 @@
     </footer>
 
     <script src="/js/app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="/js/ranking.js"></script>
+
 </body>
 </html>

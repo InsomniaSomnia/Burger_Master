@@ -29,8 +29,8 @@ router.get('/', async (req, res) => {
 
   let query = supabase
     .from('hamburguesas')
-    .select('id, nombre, descripcion, imagen_url, qr_url, proteina, sabor, disponible, restaurante_id, restaurantes(nombre, ciudad), votos(estrellas)')
-    .eq('disponible', true);
+    .select('id, nombre, descripcion, imagen_url, qr_url, proteina, sabor, disponible, restaurante_id, created_at, restaurantes(nombre, ciudad), votos(estrellas)')
+    .order('created_at', { ascending: true });
 
   if (proteina) query = query.eq('proteina', proteina);
   if (sabor) query = query.eq('sabor', sabor);

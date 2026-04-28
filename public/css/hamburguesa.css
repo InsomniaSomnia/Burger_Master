@@ -1,0 +1,402 @@
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --naranja: #ff6b1a;
+    --negro: #0a0a0a;
+    --cafe: #1a0f07;
+    --texto: #f5f0eb;
+    --texto-muted: #9a8a7a;
+    --borde: #2a1f17;
+}
+
+body {
+    background-color: var(--negro);
+    color: var(--texto);
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── Navbar ── */
+header {
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 1px solid var(--borde);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+}
+
+nav {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+nav strong a {
+    color: var(--naranja);
+    text-decoration: none;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex: 1;
+}
+
+nav ul a {
+    color: var(--texto-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+nav ul a:hover {
+    color: var(--texto);
+}
+
+#nav-invitado,
+#nav-usuario {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+}
+
+.btn-nav {
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.btn-ghost {
+    color: var(--texto-muted);
+    border: 1px solid var(--borde);
+}
+
+.btn-ghost:hover {
+    color: var(--texto);
+    border-color: #4a3a2a;
+}
+
+.btn-solid {
+    background: var(--naranja);
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-solid:hover {
+    background: #e05500;
+}
+
+#nav-username {
+    font-size: 0.9rem;
+    color: var(--texto-muted);
+}
+
+#btn-perfil-foto {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative;
+}
+
+#btn-perfil-foto img {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--borde);
+}
+
+#dropdown-perfil {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: #1a1a1a;
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 0.5rem 0;
+    min-width: 160px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    z-index: 200;
+}
+
+#dropdown-perfil a,
+#dropdown-perfil button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    color: var(--texto-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#dropdown-perfil a:hover,
+#dropdown-perfil button:hover {
+    color: var(--texto);
+}
+
+/* ── Layout ── */
+main {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 2rem 1.5rem;
+}
+
+/* ── Visor 3D ── */
+.visor-columna {
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.visor-wrapper {
+    background: var(--cafe);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+
+model-viewer {
+    width: 100%;
+    height: 70vh;
+    background-color: var(--cafe);
+    --progress-bar-color: var(--naranja);
+}
+
+.loading-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--cafe);
+    gap: 1rem;
+    transition: opacity 0.4s;
+    pointer-events: none;
+}
+
+.loading-overlay.oculto {
+    opacity: 0;
+}
+
+.spinner {
+    width: 44px;
+    height: 44px;
+    border: 3px solid var(--borde);
+    border-top-color: var(--naranja);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-overlay span {
+    font-size: 0.78rem;
+    color: var(--texto-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.visor-hint {
+    font-size: 0.75rem;
+    color: var(--texto-muted);
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+/* ── Panel info ── */
+.info-columna {
+    border-left: 1px solid var(--borde);
+    padding-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.tag-competicion {
+    display: inline-block;
+    background: var(--naranja);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 3px;
+    width: fit-content;
+    margin-bottom: 0.6rem;
+}
+
+.info-columna h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.info-columna p.descripcion {
+    font-size: 0.9rem;
+    color: var(--texto-muted);
+    line-height: 1.6;
+}
+
+/* ── Stats ── */
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+}
+
+.stat-card {
+    background: var(--cafe);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--texto-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+}
+
+.stat-valor {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--naranja);
+}
+
+.stat-sub {
+    font-size: 0.72rem;
+    color: var(--texto-muted);
+}
+
+/* ── Voto ── */
+.seccion-voto {
+    background: var(--cafe);
+    border: 1px solid var(--borde);
+    border-radius: 10px;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.seccion-voto h3 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+.estrellas {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.estrella {
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #3a2a1a;
+    transition: color 0.15s, transform 0.1s;
+    user-select: none;
+    line-height: 1;
+}
+
+.estrella:hover,
+.estrella.activa {
+    color: #FFD700;
+}
+
+.estrella:hover {
+    transform: scale(1.15);
+}
+
+#btn-votar {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--naranja);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: background 0.2s, opacity 0.2s;
+}
+
+#btn-votar:hover:not(:disabled) {
+    background: #e05500;
+}
+
+#btn-votar:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+#mensaje-voto {
+    font-size: 0.8rem;
+    min-height: 1.2em;
+    text-align: center;
+}
+
+#mensaje-voto.exito { color: #4ade80; }
+#mensaje-voto.error { color: #f87171; }
+#mensaje-voto.info  { color: var(--texto-muted); }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+    main {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .visor-columna {
+        padding-right: 0;
+    }
+
+    model-viewer {
+        height: 55vw;
+        min-height: 280px;
+    }
+
+    .info-columna {
+        border-left: none;
+        border-top: 1px solid var(--borde);
+        padding-left: 0;
+        padding-top: 1.5rem;
+    }
+}

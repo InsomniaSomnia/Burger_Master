@@ -39,7 +39,7 @@ if (navInvitado && navUsuario) {
                         const res = await fetch(`${API_URL}/restaurantes/${usuario.restaurante_id}`);
                         const rest = await res.json();
                         if (res.ok && rest.nombre) nombreRestaurante = rest.nombre;
-                    } catch {}
+                    } catch (_) {}
                 }
                 itemsHTML += `<a href="/dashboard-empleado.html">${nombreRestaurante}</a>`;
             } else if (usuario.rol === 'admin') {
@@ -161,7 +161,7 @@ if (formularioRegistro) {
 
         const username       = document.getElementById('username').value.trim();
         const password       = inputPassword.value;
-        const restaurante_id = rol === 'empleado' ? parseInt(inputRestaurante.value) : null;
+        const restaurante_id = rol === 'empleado' ? inputRestaurante.value.trim() : null;
 
         try {
             const response = await fetch(`${API_URL}/registrar`, {

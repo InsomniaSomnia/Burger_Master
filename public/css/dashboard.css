@@ -1,0 +1,302 @@
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --naranja:     #ff6b1a;
+    --naranja-alt: #d95d14;
+    --negro:       #0a0a0a;
+    --cafe:        #1a0f07;
+    --texto:       #f5f0eb;
+    --texto-muted: rgba(255,255,255,0.45);
+    --borde:       rgba(255,255,255,0.08);
+    --borde-solid: #2a1f17;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--negro);
+    color: var(--texto);
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ── NAVBAR ── */
+header {
+    background: rgba(10,10,10,0.96);
+    border-bottom: 1px solid var(--borde);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    height: 64px;
+}
+
+header nav strong a {
+    color: var(--naranja);
+    text-decoration: none;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0 40px 0 auto;
+    padding: 0;
+}
+
+header nav ul a {
+    color: var(--texto-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+header nav ul a:hover { color: var(--texto); }
+
+#nav-invitado {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+#nav-usuario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+}
+
+#nav-username { font-size: 0.9rem; color: var(--texto-muted); }
+
+#btn-perfil-foto {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+#btn-perfil-foto img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--borde-solid);
+}
+
+#dropdown-perfil {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: #111;
+    border: 1px solid var(--borde-solid);
+    border-radius: 6px;
+    padding: 0.5rem 0;
+    min-width: 170px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    z-index: 200;
+}
+
+#dropdown-perfil a,
+#dropdown-perfil button {
+    display: block;
+    width: 100%;
+    padding: 0.55rem 1rem;
+    color: var(--texto-muted);
+    text-decoration: none;
+    font-size: 0.87rem;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+#dropdown-perfil a:hover,
+#dropdown-perfil button:hover { color: var(--texto); opacity: 1; }
+
+/* ── MAIN ── */
+main {
+    flex: 1;
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+main h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--texto);
+}
+
+/* ── SECCIONES ── */
+main section {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--borde);
+    border-radius: 12px;
+    padding: 1.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+main section h2 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--naranja);
+}
+
+/* ── TABLA ── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+thead tr {
+    border-bottom: 1px solid var(--borde);
+}
+
+th {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--texto-muted);
+}
+
+td {
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--texto);
+}
+
+tr:last-child td { border-bottom: none; }
+
+/* ── LISTA PENDIENTES ── */
+#lista-pendientes ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+#lista-pendientes li {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+#lista-pendientes li strong { color: var(--texto); }
+
+#lista-pendientes button {
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+#lista-pendientes button:first-of-type {
+    background: #22c55e;
+    color: #fff;
+}
+
+#lista-pendientes button:last-of-type {
+    background: #ef4444;
+    color: #fff;
+}
+
+#lista-pendientes button:hover { opacity: 0.85; }
+
+/* ── VISITAS ── */
+#lista-visitas {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.visita-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--borde);
+    border-radius: 8px;
+    font-size: 0.88rem;
+}
+
+.visita-item span { color: var(--texto-muted); font-size: 0.78rem; }
+
+/* ── BOTÓN REGISTRAR ── */
+.btn-registrar {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--naranja-alt);
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    width: fit-content;
+}
+
+.btn-registrar:hover {
+    background: var(--naranja);
+    transform: translateY(-2px);
+}
+
+/* ── ESTADO ── */
+.estado-carga {
+    color: var(--texto-muted);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ── FOOTER ── */
+footer {
+    background-color: #060208;
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 40px 0;
+    font-size: 0.85rem;
+    margin-top: auto;
+}
+
+@media (max-width: 768px) {
+    header nav { padding: 0 20px; }
+    header nav ul { display: none; }
+    main { padding: 2rem 1rem; }
+}

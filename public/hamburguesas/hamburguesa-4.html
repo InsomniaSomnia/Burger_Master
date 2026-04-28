@@ -3,55 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Hamburguesa 4 — Burger Master</title>
+    <title>The Original Bun — Burger Master</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <link rel="stylesheet" href="/css/hamburguesa.css">
 </head>
 <body>
 
-    <header>
-        <nav>
-            <strong><a href="/index.html">Burger Master</a></strong>
-            <ul>
-                <li><a href="/index.html#directorio">Directorio</a></li>
-                <li><a href="/ranking.html">Ranking</a></li>
-                <li><a href="/mapa.html">Mapa</a></li>
-            </ul>
-            <div id="nav-invitado">
-                <a href="/login.html">Ingresar</a>
-                <a href="/registro.html">Registrarse</a>
+<header>
+    <nav>
+        <strong><a href="/index.html">Burger Master</a></strong>
+        <ul>
+            <li><a href="/index.html#directorio">Directorio</a></li>
+            <li><a href="/ranking.html">Ranking</a></li>
+            <li><a href="/mapa.html">Mapa</a></li>
+        </ul>
+        <div id="nav-invitado">
+            <a href="/login.html" class="btn-nav btn-ghost">Ingresar</a>
+            <a href="/registro.html" class="btn-nav btn-solid">Registrarse</a>
+        </div>
+        <div id="nav-usuario" style="display:none; position:relative;">
+            <span id="nav-username"></span>
+            <button id="btn-perfil-foto" type="button">
+                <img id="foto-perfil" src="/assets/photo_profile.jpg" alt="Foto de perfil">
+            </button>
+            <div id="dropdown-perfil" style="display:none;"></div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <div class="visor-columna">
+        <div class="visor-wrapper">
+            <div class="loading-overlay" id="loading-overlay">
+                <div class="spinner"></div>
+                <span>Cargando modelo 3D…</span>
             </div>
-            <div id="nav-usuario" style="display:none;">
-                <span id="nav-username"></span>
-                <button id="btn-perfil-foto" type="button">
-                    <img id="foto-perfil" src="/img/perfil-default.png" alt="Foto de perfil">
-                </button>
-                <div id="dropdown-perfil" style="display:none;"></div>
+
+            <model-viewer
+                id="visor-3d"
+                src="/3D/plaza_burger_2.glb"
+                alt="Modelo 3D La Clásica"
+                auto-rotate
+                camera-controls
+                shadow-intensity="1.2"
+                environment-image="neutral"
+                rotation-per-second="18deg"
+            ></model-viewer>
+        </div>
+        <p class="visor-hint">Arrastra para rotar · Scroll para zoom</p>
+    </div>
+
+    <div class="info-columna">
+        <div>
+            <span class="tag-competicion">Competidor #4</span>
+            <h1>The Original Bun</h1>
+            <p class="descripcion">
+                La clásica llevada a otro nivel. Vegetales frescos de granja,
+                carne jugosa y pan rústico tostado con mantequilla. Simplicidad
+                perfecta que nunca pasa de moda.
+            </p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Promedio</div>
+                <div class="stat-valor" id="stat-promedio">—</div>
+                <div class="stat-sub">de 5 estrellas</div>
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <section id="detalle-hamburguesa">
-            <h1 id="hamb-nombre">Cargando...</h1>
-            <p><strong>Descripción:</strong> <span id="hamb-descripcion"></span></p>
-            <p><strong>Restaurante:</strong> <span id="hamb-restaurante"></span></p>
-            <p><strong>Proteína:</strong> <span id="hamb-proteina"></span></p>
-            <p><strong>Sabor:</strong> <span id="hamb-sabor"></span></p>
-
-            <div id="seccion-voto">
-                <h2>Tu voto</h2>
-                <div id="estrellas-voto"></div>
-                <p id="msg-voto"></p>
+            <div class="stat-card">
+                <div class="stat-label">Total votos</div>
+                <div class="stat-valor" id="stat-votos">—</div>
+                <div class="stat-sub">calificaciones</div>
             </div>
-        </section>
-    </main>
+            <div class="stat-card" style="grid-column: span 2;">
+                <div class="stat-label">Participantes activos</div>
+                <div class="stat-valor" id="stat-participantes">—</div>
+                <div class="stat-sub">usuarios han votado en total</div>
+            </div>
+        </div>
 
-    <footer>
-        <p>Burger Master &copy; 2026</p>
-    </footer>
+        <div class="seccion-voto">
+            <h3>Tu calificación</h3>
 
-    <script src="/js/app.js"></script>
-    <script>const INDICE_HAMBURGUESA = 3;</script>
-    <script src="/js/hamburguesa.js"></script>
+            <div class="estrellas" id="contenedor-estrellas">
+                <span class="estrella" data-valor="1">★</span>
+                <span class="estrella" data-valor="2">★</span>
+                <span class="estrella" data-valor="3">★</span>
+                <span class="estrella" data-valor="4">★</span>
+                <span class="estrella" data-valor="5">★</span>
+            </div>
+
+            <button id="btn-votar" disabled>Selecciona estrellas</button>
+            <p id="mensaje-voto"></p>
+        </div>
+    </div>
+</main>
+
+<script src="/js/app.js"></script>
+<script src="/js/hamburguesa-4.js"></script>
+
 </body>
 </html>

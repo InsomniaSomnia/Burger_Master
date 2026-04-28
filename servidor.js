@@ -13,6 +13,7 @@ const origenesPermitidos = process.env.CORS_ORIGIN
 app.use(cors({ origin: origenesPermitidos }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/3D', express.static(path.join(__dirname, '3D')));
 
 const limitadorLogin = rateLimit({
   windowMs: 15 * 60 * 1000,

@@ -83,7 +83,9 @@ main {
 
 
 /* --- 2. La Tarjeta (Bento Card del Formulario) --- */
-#formulario-registro {
+#formulario-registro,
+#formulario-login,
+#formulario-login-admin {
     background-color: rgba(26, 11, 5, 0.85); /* Fondo translúcido para ver la imagen de la página */
     backdrop-filter: blur(12px); /* Efecto de cristal esmerilado (Glassmorphism) */
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -96,7 +98,9 @@ main {
     flex-direction: column;
 }
 
-#formulario-registro h2 {
+#formulario-registro h2,
+#formulario-login h2,
+#formulario-login-admin h2 {
     color: #ffffff;
     font-size: 2rem;
     margin-top: 0;
@@ -193,7 +197,9 @@ main {
 }
 
 /* --- 5. Botón Principal (Pill Design) --- */
-#formulario-registro button[type="submit"] {
+#formulario-registro button[type="submit"],
+#formulario-login button[type="submit"],
+#formulario-login-admin button[type="submit"] {
     background-color: #d95d14;
     color: #ffffff;
     border: none;
@@ -207,7 +213,9 @@ main {
     width: 100%;
 }
 
-#formulario-registro button[type="submit"]:hover {
+#formulario-registro button[type="submit"]:hover,
+#formulario-login button[type="submit"]:hover,
+#formulario-login-admin button[type="submit"]:hover {
     background-color: #f06e20;
     transform: translateY(-2px);
 }

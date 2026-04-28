@@ -1,31 +1,19 @@
-const HAMBURGUESA_NUM = 1;
+// ── Constante de identificación ────────────────────────────────────────────
+const HAMBURGUESA_ID = 1;
 
+// ── Modelo 3D ───────────────────────────────────────────────────────────────
 const visor3d = document.getElementById('visor-3d');
 const overlay = document.getElementById('loading-overlay');
 
-visor3d.addEventListener('load',  () => overlay.classList.add('oculto'));
+visor3d.addEventListener('load', () => {
+    overlay.classList.add('oculto');
+});
+
 visor3d.addEventListener('error', () => {
     overlay.innerHTML = '<span style="color:#f87171;text-align:center;padding:1rem;font-size:0.8rem;">No se pudo cargar el modelo 3D.</span>';
 });
 
-let HAMBURGUESA_UUID = null;
-
-async function init() {
-    try {
-        const res   = await fetch('/hamburguesas');
-        const lista = await res.json();
-        if (!res.ok || !Array.isArray(lista) || !lista.length) return;
-
-        const nombrePagina = document.querySelector('h1').textContent.trim();
-        const hamburguesa  = lista.find(h => h.nombre === nombrePagina)
-                          ?? lista[HAMBURGUESA_NUM - 1];
-        if (!hamburguesa) return;
-
-        HAMBURGUESA_UUID = hamburguesa.id;
-        await cargarStats();
-    } catch (_) {}
-}
-
+// ── Stats ───────────────────────────────────────────────────────────────────
 async function cargarStats() {
     try {
         const [resRanking, resParticipantes] = await Promise.all([
@@ -35,10 +23,12 @@ async function cargarStats() {
 
         if (resRanking.ok) {
             const ranking = await resRanking.json();
-            const entry   = ranking.find(h => h.id === HAMBURGUESA_UUID);
+            const entry = ranking.find(h => h.id === HAMBURGUESA_ID);
             if (entry) {
                 document.getElementById('stat-promedio').textContent =
-                    entry.promedio_estrellas > 0 ? entry.promedio_estrellas.toFixed(1) : '—';
+                    entry.promedio_estrellas > 0
+                        ? entry.promedio_estrellas.toFixed(1)
+                        : '—';
                 document.getElementById('stat-votos').textContent = entry.total_votos;
             }
         }
@@ -47,10 +37,19 @@ async function cargarStats() {
             const data = await resParticipantes.json();
             document.getElementById('stat-participantes').textContent = data.participantes;
         }
-    } catch (_) {}
+
+    } catch {
+        // Si falla la conexión, mostrar guiones
+        document.getElementById('stat-promedio').textContent = '—';
+        document.getElementById('stat-votos').textContent    = '—';
+        document.getElementById('stat-participantes').textContent = '—';
+    }
 }
 
-// ── Votación — se configura inmediatamente al cargar la página ─────────────
+// Llamar al cargar la página
+cargarStats();
+
+// ── Votación ────────────────────────────────────────────────────────────────
 const btnVotar  = document.getElementById('btn-votar');
 const msgVoto   = document.getElementById('mensaje-voto');
 const estrellas = document.querySelectorAll('.estrella');
@@ -67,38 +66,45 @@ function resaltarEstrellas(n) {
     });
 }
 
+// decodificarToken() viene de /js/app.js
 const usuario = decodificarToken();
 
 if (!usuario) {
+    // Usuario no autenticado: el botón redirige al login
     btnVotar.textContent = 'Inicia sesión para votar';
-    btnVotar.disabled = false;
-    btnVotar.addEventListener('click', () => { window.location.href = '/login.html'; });
+    btnVotar.disabled    = false;
+    btnVotar.addEventListener('click', () => {
+        window.location.href = '/login.html';
+    });
+
 } else if (usuario.rol !== 'cliente') {
+    // Usuarios que no son clientes no pueden votar
     btnVotar.textContent = 'Solo clientes pueden votar';
+
 } else {
+    // Usuario autenticado como cliente: habilitar estrellas
     estrellas.forEach(estrella => {
-        estrella.addEventListener('mouseover', () => resaltarEstrellas(parseInt(estrella.dataset.valor)));
-        estrella.addEventListener('mouseout',  () => resaltarEstrellas(estrellaSeleccionada));
-        estrella.addEventListener('click', () => {
-            estrellaSeleccionada = parseInt(estrella.dataset.valor);
+        estrella.addEventListener('mouseover', () => {
+            resaltarEstrellas(parseInt(estrella.dataset.valor));
+        });
+
+        estrella.addEventListener('mouseout', () => {
             resaltarEstrellas(estrellaSeleccionada);
-            btnVotar.disabled    = false;
-            btnVotar.textContent = `Votar con ${estrellaSeleccionada} ★`;
+        });
+
+        estrella.addEventListener('click', () => {
+            estrellaSeleccionada  = parseInt(estrella.dataset.valor);
+            resaltarEstrellas(estrellaSeleccionada);
+            btnVotar.disabled     = false;
+            btnVotar.textContent  = `Votar con ${estrellaSeleccionada} ★`;
         });
     });
 
     btnVotar.addEventListener('click', async () => {
         if (estrellaSeleccionada === 0) return;
 
-        await initPromise;
-
-        if (!HAMBURGUESA_UUID) {
-            setMensajeVoto('No se pudo cargar la hamburguesa.', 'error');
-            return;
-        }
-
-        const token = localStorage.getItem('token');
-        btnVotar.disabled    = true;
+        const token         = localStorage.getItem('token');
+        btnVotar.disabled   = true;
         btnVotar.textContent = 'Enviando…';
 
         try {
@@ -108,7 +114,10 @@ if (!usuario) {
                     'Content-Type':  'application/json',
                     'Authorization': `Bearer ${token}`,
                 },
-                body: JSON.stringify({ hamburguesa_id: HAMBURGUESA_UUID, estrellas: estrellaSeleccionada }),
+                body: JSON.stringify({
+                    hamburguesa_id: HAMBURGUESA_ID,
+                    estrellas: estrellaSeleccionada,
+                }),
             });
 
             const data = await res.json();
@@ -116,22 +125,24 @@ if (!usuario) {
             if (res.ok) {
                 setMensajeVoto('¡Voto registrado! Gracias por participar.', 'exito');
                 btnVotar.textContent = 'Voto registrado ✓';
+                // Deshabilitar estrellas para no votar dos veces
                 estrellas.forEach(e => e.style.pointerEvents = 'none');
-                await cargarStats();
+                cargarStats();
+
             } else if (res.status === 409) {
                 setMensajeVoto('Ya votaste por esta hamburguesa.', 'error');
                 btnVotar.textContent = 'Ya votaste';
+
             } else {
                 setMensajeVoto(data.error || 'Error al registrar el voto.', 'error');
                 btnVotar.disabled    = false;
                 btnVotar.textContent = `Votar con ${estrellaSeleccionada} ★`;
             }
-        } catch (_) {
+
+        } catch {
             setMensajeVoto('No se pudo conectar al servidor.', 'error');
             btnVotar.disabled    = false;
             btnVotar.textContent = `Votar con ${estrellaSeleccionada} ★`;
         }
     });
 }
-
-const initPromise = init();

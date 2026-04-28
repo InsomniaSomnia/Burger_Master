@@ -4,10 +4,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel Empleado — Burger Master</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
-    <script src="js/auth-guard.js"></script>
+    <script src="/js/auth-guard.js"></script>
     <script>const usuario = soloRol('empleado');</script>
 
+    <header>
+        <nav>
+            <strong><a href="/index.html">Burger Master</a></strong>
+            <ul>
+                <li><a href="/index.html">Inicio</a></li>
+                <li><a href="/ranking.html">Ranking</a></li>
+            </ul>
+            <div id="nav-invitado" style="display:none;">
+                <a href="/login.html">Ingresar</a>
+            </div>
+            <div id="nav-usuario" style="display:none;">
+                <span id="nav-username"></span>
+                <button id="btn-perfil-foto" type="button">
+                    <img id="foto-perfil" src="/assets/photo_profile.jpg" alt="Foto de perfil">
+                </button>
+                <div id="dropdown-perfil" style="display:none;"></div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+
+        <h1>Panel de Empleado</h1>
+
+        <section id="seccion-registrar">
+            <h2>Registrar visita</h2>
+            <p style="font-size:0.9rem;color:rgba(255,255,255,0.45);">Registra manualmente la visita de un cliente a tu restaurante.</p>
+            <button class="btn-registrar" id="btn-registrar-visita">+ Registrar visita</button>
+            <p id="mensaje-visita" style="font-size:0.85rem;min-height:1.2em;"></p>
+        </section>
+
+        <section id="seccion-visitas">
+            <h2>Visitas recientes</h2>
+            <div id="lista-visitas"><span class="estado-carga">Cargando…</span></div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Burger Master &copy; 2026</p>
+    </footer>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/dashboard-empleado.js"></script>
 </body>
 </html>

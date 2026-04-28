@@ -1,4 +1,4 @@
-const HAMBURGUESA_NUM = 1;
+const HAMBURGUESA_NUM = 4;
 
 const visor3d = document.getElementById('visor-3d');
 const overlay = document.getElementById('loading-overlay');
@@ -50,7 +50,6 @@ async function cargarStats() {
     } catch (_) {}
 }
 
-// ── Votación — se configura inmediatamente al cargar la página ─────────────
 const btnVotar  = document.getElementById('btn-votar');
 const msgVoto   = document.getElementById('mensaje-voto');
 const estrellas = document.querySelectorAll('.estrella');
