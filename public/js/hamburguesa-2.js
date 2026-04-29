@@ -1,4 +1,5 @@
 const HAMBURGUESA_NUM = 2;
+const HAMBURGUESA_UUID = 'ef50f788-8fdb-4ec7-b628-84cca818e036';
 
 const visor3d = document.getElementById('visor-3d');
 const overlay = document.getElementById('loading-overlay');
@@ -7,24 +8,6 @@ visor3d.addEventListener('load',  () => overlay.classList.add('oculto'));
 visor3d.addEventListener('error', () => {
     overlay.innerHTML = '<span style="color:#f87171;text-align:center;padding:1rem;font-size:0.8rem;">No se pudo cargar el modelo 3D.</span>';
 });
-
-let HAMBURGUESA_UUID = null;
-
-async function init() {
-    try {
-        const res   = await fetch('/hamburguesas');
-        const lista = await res.json();
-        if (!res.ok || !Array.isArray(lista) || !lista.length) return;
-
-        const nombrePagina = document.querySelector('h1').textContent.trim();
-        const hamburguesa  = lista.find(h => h.nombre === nombrePagina)
-                          ?? lista[HAMBURGUESA_NUM - 1];
-        if (!hamburguesa) return;
-
-        HAMBURGUESA_UUID = hamburguesa.id;
-        await cargarStats();
-    } catch (_) {}
-}
 
 async function cargarStats() {
     try {
@@ -75,7 +58,6 @@ if (!usuario) {
 } else if (usuario.rol !== 'cliente') {
     btnVotar.textContent = 'Solo clientes pueden votar';
 } else {
-    const initPromise = init();
     estrellas.forEach(estrella => {
         estrella.addEventListener('mouseover', () => resaltarEstrellas(parseInt(estrella.dataset.valor)));
         estrella.addEventListener('mouseout',  () => resaltarEstrellas(estrellaSeleccionada));
@@ -89,13 +71,6 @@ if (!usuario) {
 
     btnVotar.addEventListener('click', async () => {
         if (estrellaSeleccionada === 0) return;
-
-        await initPromise;
-
-        if (!HAMBURGUESA_UUID) {
-            setMensajeVoto('No se pudo cargar la hamburguesa.', 'error');
-            return;
-        }
 
         const token = localStorage.getItem('token');
         btnVotar.disabled    = true;
@@ -133,3 +108,5 @@ if (!usuario) {
         }
     });
 }
+
+cargarStats();
