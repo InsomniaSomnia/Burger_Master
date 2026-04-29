@@ -8,7 +8,7 @@ const app = express();
 
 const origenesPermitidos = process.env.CORS_ORIGIN
   ? process.env.CORS_ORIGIN.split(',')
-  : ['http://localhost:3000'];
+  : ['https://burgermaster-production.up.railway.app'];
 
 app.use(cors({ origin: origenesPermitidos }));
 app.use(express.json());

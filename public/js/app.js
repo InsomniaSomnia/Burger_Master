@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://burgermaster-production.up.railway.app';
 
 // ── JWT helper ────────────────────────────────────────────────────────────────
 function decodificarToken() {
