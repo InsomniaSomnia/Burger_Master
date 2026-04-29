@@ -17,7 +17,7 @@ Plataforma web de competición de hamburguesas desarrollada como proyecto univer
 
 ## Descripción
 
-Burger Master no es una app de pedidos — es una arena de competición. Cada hamburguesa tiene su propia página con un modelo 3D interactivo que se expande al hacer scroll mostrando sus ingredientes, al estilo de las páginas de producto de Apple. El sistema de votación actualiza el ranking en tiempo real sin necesidad de recargar la página gracias a Supabase Realtime. La autenticación es opcional para navegar, pero obligatoria para votar o comentar. El acceso está segmentado por roles: clientes votan, empleados registran visitas y el admin gestiona el sistema completo.
+Burger Master no es una app de pedidos — es una arena de competición. Cada hamburguesa tiene su propia página con un modelo 3D interactivo que se expande al hacer scroll mostrando sus ingredientes. El sistema de votación actualiza el ranking en tiempo real sin necesidad de recargar la página gracias a Supabase Realtime. La autenticación es opcional para navegar, pero obligatoria para votar o comentar. El acceso está segmentado por roles: clientes votan, empleados registran visitas y el admin gestiona el sistema completo.
 
 ---
 
